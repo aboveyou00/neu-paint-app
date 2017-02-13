@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -10,9 +11,216 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="tooearly.com.neu_paint_app.Activities.MainActivity">
 
+    <View android:id="@+id/redRectangle"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="#ff0000"
+        android:visibility="visible"
+        android:layout_alignTop="@+id/blueRectangle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View android:id="@+id/blueRectangle"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="#0000ff"
+        android:visibility="visible"
+        android:layout_marginTop="89dp"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/redRectangle"
+        android:layout_toStartOf="@+id/redRectangle" />
+
+    <View android:id="@+id/greenRectangle"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="#00ff00"
+        android:visibility="visible"
+        android:layout_below="@+id/redRectangle"
+        android:layout_alignLeft="@+id/blueRectangle"
+        android:layout_alignStart="@+id/blueRectangle" />
+
+    <View android:id="@+id/yellowRectangle"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="#ffff00"
+        android:visibility="visible"
+        android:layout_below="@+id/redRectangle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View android:id="@+id/purpleRectangle"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="#800080"
+        android:visibility="visible"
+        android:layout_below="@+id/greenRectangle"
+        android:layout_alignLeft="@+id/greenRectangle"
+        android:layout_alignStart="@+id/greenRectangle" />
+
+    <View android:id="@+id/orangeRectangle"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="#FFA00A"
+        android:visibility="visible"
+        android:layout_below="@+id/greenRectangle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View android:id="@+id/brownRectangle"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="#844421"
+        android:visibility="visible"
+        android:layout_below="@+id/orangeRectangle"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <View android:id="@+id/pinkRectangle"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:background="#f71884"
+        android:visibility="visible"
+        android:layout_below="@+id/purpleRectangle"
+        android:layout_alignLeft="@+id/purpleRectangle"
+        android:layout_alignStart="@+id/purpleRectangle" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_save"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/imageButton4" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/imageButton4"
+        android:layout_toEndOf="@+id/imageButton4"
+        android:id="@+id/imageButton5" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/imageButton7" />
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/imageButton5"
+        android:layout_toEndOf="@+id/imageButton5"
+        android:layout_marginLeft="25dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginBottom="51dp"
+        android:background="@drawable/triangle"
+        android:id="@+id/triangle" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignBottom="@+id/triangle"
+        android:layout_toLeftOf="@+id/pinkRectangle"
+        android:layout_toStartOf="@+id/pinkRectangle"
+        android:layout_marginRight="55dp"
+        android:layout_marginTop="500dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/circle"
+        android:id="@+id/circle" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:background="@drawable/line"
+        android:id="@+id/line"
+        android:layout_alignTop="@+id/triangle"
+        android:layout_toLeftOf="@+id/circle"
+        android:layout_toStartOf="@+id/circle"
+        android:layout_marginRight="23dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="23dp" />
+
     <tooearly.com.neu_paint_app.Views.PaintView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
     </tooearly.com.neu_paint_app.Views.PaintView>
+
+    <TextView
+        android:text="Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageButton14"
+        android:layout_alignRight="@+id/imageButton14"
+        android:layout_alignEnd="@+id/imageButton14"
+        android:id="@+id/textView4"
+        tools:text="Horizontal" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_popup_sync"
+        android:id="@+id/imageButton16"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/circle"
+        android:layout_alignStart="@+id/circle" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_popup_sync"
+        android:id="@+id/imageButton15"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/line"
+        android:layout_alignStart="@+id/line"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_popup_sync"
+        android:id="@+id/imageButton14"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/triangle"
+        android:layout_alignStart="@+id/triangle"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp" />
+
+    <TextView
+        android:text="Vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        tools:text="Vertical"
+        android:layout_below="@+id/imageButton15"
+        android:layout_alignLeft="@+id/imageButton15"
+        android:layout_alignStart="@+id/imageButton15" />
+
+    <TextView
+        android:text="Invert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        tools:text="Invert"
+        android:layout_below="@+id/imageButton16"
+        android:layout_alignLeft="@+id/imageButton16"
+        android:layout_alignStart="@+id/imageButton16"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" />
+
 
 </RelativeLayout>
