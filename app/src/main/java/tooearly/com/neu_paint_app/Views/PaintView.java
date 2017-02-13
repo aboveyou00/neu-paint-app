@@ -5,6 +5,7 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.Dimension;
 import android.support.v4.view.MotionEventCompat;
@@ -19,6 +20,7 @@ import tooearly.com.neu_paint_app.R;
 public class PaintView extends View {
 
     public static final String TAG = "PaintView";
+    private Paint myBrush;
 
     public PaintView(Context context) {
         super(context);
@@ -36,6 +38,14 @@ public class PaintView extends View {
     }
 
     private void init(AttributeSet attrs, int defStyle) {
+        myBrush = new Paint();
+        myBrush.setAntiAlias(true);
+        myBrush.setColor(Color.BLACK);
+        myBrush.setStyle(Paint.Style.STROKE);
+        myBrush.setStrokeJoin(Paint.Join.ROUND);
+        myBrush.setStrokeWidth(4f);
+
+
         mExampleString = "Hello, World!";
         mExampleColor = Color.argb(1, 255, 128, 0);
         // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
@@ -127,6 +137,52 @@ public class PaintView extends View {
             mExampleDrawable.draw(canvas);
         }
     }
+
+    protected void onBrushStyleLineChange(Paint.Style newStyle) {
+        myBrush.setStyle(newStyle);
+    }
+
+    protected void onBrushStyleJoinChange(Paint.Join newJoinStyle) {
+        myBrush.setStrokeJoin(newJoinStyle);
+    }
+
+    protected void onBrushShapeChange(float newWidth) {
+        myBrush.setStrokeWidth(newWidth);
+    }
+
+    protected void onBrushSizeChange(float newWidth) {
+        myBrush.setStrokeWidth(newWidth);
+    }
+
+    protected void onBrushColorChange(int newColor) {
+        myBrush.setColor(newColor);
+    }
+
+    protected void flipCanvasHorizontally() {
+        //TODO: flip canvas horizontally
+    }
+
+    protected void flipCanvasVertically() {
+        //TODO: flip canvas vertically
+    }
+
+    protected void invertCanvas() {
+        //TODO: invert canvas colors
+    }
+
+    protected void undoAction() {
+        //TODO: undo last draw action
+    }
+
+    protected void saveCanvas() {
+        //TODO: save current canvas
+    }
+
+    protected void clearCanvas() {
+        //TODO: clear current canvas
+        this.clearCanvas();
+    }
+
 
     /**
      * Gets the example string attribute value.
