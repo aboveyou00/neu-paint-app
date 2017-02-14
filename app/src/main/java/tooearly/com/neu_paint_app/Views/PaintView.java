@@ -122,8 +122,11 @@ public class PaintView extends View {
         this.stack.render(this, canvas);
     }
 
-    private int brushColor, brushSize;
-    private BrushShape brushShape;
+    private boolean drawingShape = true;
+    public ShapeType shapeType = ShapeType.Rect;
+
+    public int brushColor, brushSize;
+    public BrushShape brushShape;
 
 //    protected void onBrushStyleLineChange(Paint.Style newStyle) {
 //        myBrush.setStyle(newStyle);

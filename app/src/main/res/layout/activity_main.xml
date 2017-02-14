@@ -30,16 +30,8 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/imageButton17"
         android:layout_toEndOf="@+id/imageButton17"
-        android:id="@+id/imageButton18" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/imageButton19" />
+        android:id="@+id/imageButton18"
+        android:onClick="clearCanvasPressed" />
 
     <Button
         android:layout_width="wrap_content"
@@ -48,7 +40,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/button6"
-        android:background="@color/Red" />
+        android:background="@color/Red"
+        android:onClick="setColor" />
 
     <Button
         android:layout_width="wrap_content"
@@ -57,7 +50,8 @@
         android:layout_alignLeft="@+id/button5"
         android:layout_alignStart="@+id/button5"
         android:id="@+id/button7"
-        android:background="@color/Green" />
+        android:background="@color/Green"
+        android:onClick="setColor" />
 
     <Button
         android:layout_width="wrap_content"
@@ -66,7 +60,8 @@
         android:layout_alignLeft="@+id/button6"
         android:layout_alignStart="@+id/button6"
         android:id="@+id/button8"
-        android:background="@color/Yellow" />
+        android:background="@color/Yellow"
+        android:onClick="setColor" />
 
     <Button
         android:layout_width="wrap_content"
@@ -75,7 +70,8 @@
         android:layout_alignRight="@+id/button7"
         android:layout_alignEnd="@+id/button7"
         android:id="@+id/button9"
-        android:background="@color/Purple" />
+        android:background="@color/Purple"
+        android:onClick="setColor" />
 
     <Button
         android:layout_width="wrap_content"
@@ -84,7 +80,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/button10"
-        android:background="@color/Orange" />
+        android:background="@color/Orange"
+        android:onClick="setColor" />
 
     <Button
         android:layout_width="wrap_content"
@@ -93,7 +90,8 @@
         android:layout_alignLeft="@+id/button9"
         android:layout_alignStart="@+id/button9"
         android:id="@+id/button11"
-        android:background="@color/Pink" />
+        android:background="@color/Pink"
+        android:onClick="setColor" />
 
     <Button
         android:layout_width="wrap_content"
@@ -102,7 +100,8 @@
         android:layout_alignLeft="@+id/button10"
         android:layout_alignStart="@+id/button10"
         android:id="@+id/button12"
-        android:background="@color/Brown" />
+        android:background="@color/Brown"
+        android:onClick="setColor" />
 
     <Button
         android:layout_width="wrap_content"
@@ -112,7 +111,8 @@
         android:background="@color/Blue"
         android:layout_below="@+id/imageButton19"
         android:layout_toLeftOf="@+id/button6"
-        android:layout_toStartOf="@+id/button6" />
+        android:layout_toStartOf="@+id/button6"
+        android:onClick="setColor" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -123,7 +123,8 @@
         android:layout_toEndOf="@+id/imageButton17"
         android:layout_marginLeft="39dp"
         android:layout_marginStart="39dp"
-        android:id="@+id/imageButton20" />
+        android:id="@+id/imageButton20"
+        android:onClick="setShapeTriangle" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -133,7 +134,8 @@
         android:layout_toRightOf="@+id/imageButton20"
         android:layout_marginBottom="30dp"
         android:layout_toEndOf="@+id/imageButton20"
-        android:id="@+id/imageButton21" />
+        android:id="@+id/imageButton21"
+        android:onClick="setShapeLine" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -142,16 +144,16 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/imageButton21"
         android:layout_toEndOf="@+id/imageButton21"
-        android:id="@+id/imageButton22" />
+        android:id="@+id/imageButton22"
+        android:onClick="setShapeCircle" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_popup_sync"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageButton24"
-        android:layout_toEndOf="@+id/imageButton24"
-        android:id="@+id/imageButton25" />
+        android:id="@+id/imageButton25"
+        android:onClick="saveCanvasPressed" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -162,10 +164,11 @@
         android:layout_toRightOf="@+id/textView8"
         android:layout_toEndOf="@+id/textView8"
         android:layout_marginLeft="58dp"
-        android:layout_marginStart="58dp" />
+        android:layout_marginStart="58dp"
+        android:onClick="flipVerticalPressed" />
 
     <TextView
-        android:text="Vertical"
+        android:text="@string/lbl_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageButton28"
@@ -179,7 +182,8 @@
         app:srcCompat="@android:drawable/ic_popup_sync"
         android:id="@+id/imageButton27"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="flipHorizontalPressed" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -193,10 +197,10 @@
         android:layout_marginStart="22dp" />
 
     <TextView
-        android:text="Undo"
+        android:text="@string/lbl_undo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView"
+        android:id="@+id/textView2"
         android:layout_below="@+id/imageButton19"
         android:layout_alignLeft="@+id/imageButton19"
         android:layout_alignStart="@+id/imageButton19"
@@ -204,7 +208,7 @@
         android:layout_marginStart="11dp" />
 
     <TextView
-        android:text="Horizontal"
+        android:text="@string/lbl_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView8"
@@ -212,7 +216,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Invert"
+        android:text="@string/lbl_invert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
@@ -220,7 +224,36 @@
         android:layout_marginStart="10dp"
         android:layout_below="@+id/imageButton26"
         android:layout_alignLeft="@+id/imageButton26"
-        android:layout_alignStart="@+id/imageButton26" />
+        android:layout_alignStart="@+id/imageButton26"
+        android:onClick="invertPressed" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:id="@+id/btnRedo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="redoPressed" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_revert"
+        android:id="@+id/imageButton19"
+        android:onClick="undoPressed"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/btnRedo"
+        android:layout_toStartOf="@+id/btnRedo" />
+
+    <TextView
+        android:text="@string/lbl_redo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lbl_redo"
+        android:layout_below="@+id/btnRedo"
+        android:layout_marginLeft="555dp"
+        android:layout_marginStart="555dp" />
 
 </RelativeLayout>
