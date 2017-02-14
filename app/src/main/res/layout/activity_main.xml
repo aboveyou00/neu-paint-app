@@ -129,6 +129,7 @@
         android:src="@drawable/line"
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/imageButton20"
+        android:layout_marginBottom="30dp"
         android:layout_toEndOf="@+id/imageButton20"
         android:id="@+id/imageButton21" />
 
@@ -149,26 +150,6 @@
         android:layout_toRightOf="@+id/imageButton24"
         android:layout_toEndOf="@+id/imageButton24"
         android:id="@+id/imageButton25" />
-
-    <TextView
-        android:text="Invert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView7"
-        android:layout_below="@+id/imageButton26"
-        android:layout_alignLeft="@+id/imageButton26"
-        android:layout_alignStart="@+id/imageButton26"
-        android:layout_marginLeft="13dp"
-        android:layout_marginStart="13dp" />
-
-    <TextView
-        android:text="Horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageButton27"
-        android:layout_alignLeft="@+id/imageButton27"
-        android:layout_alignStart="@+id/imageButton27"
-        android:id="@+id/textView8" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -208,6 +189,36 @@
         android:layout_toEndOf="@+id/imageButton18"
         android:layout_marginLeft="22dp"
         android:layout_marginStart="22dp" />
+
+    <TextView
+        android:text="Undo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/imageButton19"
+        android:layout_alignLeft="@+id/imageButton19"
+        android:layout_alignStart="@+id/imageButton19"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:text="Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/imageButton27"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Invert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_below="@+id/imageButton26"
+        android:layout_alignLeft="@+id/imageButton26"
+        android:layout_alignStart="@+id/imageButton26" />
 
 
 </RelativeLayout>
