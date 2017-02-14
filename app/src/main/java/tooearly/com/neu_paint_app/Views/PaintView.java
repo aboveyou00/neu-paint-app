@@ -5,6 +5,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
+import android.graphics.drawable.shapes.Shape;
+import android.os.Build;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -41,11 +43,11 @@ public class PaintView extends View {
         curX = 0;
         curY = 0;
         lineCoordsAry = new ArrayList<>();
+
         myBrush = new Paint();
         myBrush.setColor(Color.BLACK);
         myBrush.setStyle(Paint.Style.FILL);
         myBrush.setStrokeWidth(3);
-
 
         Paint filledBlue = new Paint();
         filledBlue.setColor(Color.BLUE);
@@ -74,6 +76,7 @@ public class PaintView extends View {
                 Log.d(TAG, event.getY() + "");
                 curX = event.getX();
                 curY = event.getY();
+                stack.push(new LinePaintCommand("Brush", cloneBrush(myBrush), lineCoordsAry));
                 return true;
             case (MotionEvent.ACTION_MOVE):
                 Log.d(TAG, "Action was MOVE");
@@ -82,12 +85,10 @@ public class PaintView extends View {
                 float newY = event.getY();
 
                 lineCoordsAry.add(new RectF(curX, curY, newX, newY));
-
-
                 curX = newX;
                 curY = newY;
-
                 invalidate();
+
                 return true;
             case (MotionEvent.ACTION_UP):
                 Log.d(TAG, "Action was UP");
@@ -96,8 +97,8 @@ public class PaintView extends View {
                 float endY = event.getY();
 
                 lineCoordsAry.add(new RectF(curX, curY, endX, endY));
-
-                stack.push(new LinePaintCommand("Draw line", myBrush, ShapeType.Line, lineCoordsAry));
+                invalidate();
+                lineCoordsAry = new ArrayList<>();
 
                 curX = endX;
                 curY = endY;
@@ -116,17 +117,72 @@ public class PaintView extends View {
         }
     }
 
+    private Paint cloneBrush(Paint old) {
+        Paint brush = new Paint();
+
+        brush.setColor(old.getColor());
+        brush.setStyle(old.getStyle());
+        brush.setAlpha(old.getAlpha());
+        brush.setAntiAlias(old.isAntiAlias());
+        brush.setDither(old.isDither());
+        brush.setFakeBoldText(old.isFakeBoldText());
+        brush.setFlags(old.getFlags());
+        brush.setColorFilter(old.getColorFilter());
+        brush.setFilterBitmap(old.isFilterBitmap());
+        brush.setHinting(old.getHinting());
+        brush.setLinearText(old.isLinearText());
+        brush.setMaskFilter(old.getMaskFilter());
+        brush.setPathEffect(old.getPathEffect());
+        brush.setShader(old.getShader());
+        brush.setStrikeThruText(old.isStrikeThruText());
+        brush.setStrokeCap(old.getStrokeCap());
+        brush.setStrokeJoin(old.getStrokeJoin());
+        brush.setStrokeMiter(old.getStrokeMiter());
+        brush.setStrokeWidth(old.getStrokeWidth());
+        brush.setSubpixelText(old.isSubpixelText());
+        brush.setTextAlign(old.getTextAlign());
+        brush.setTextSize(old.getTextSize());
+        brush.setTextScaleX(old.getTextScaleX());
+        brush.setTextSkewX(old.getTextSkewX());
+        brush.setUnderlineText(old.isUnderlineText());
+        brush.setXfermode(old.getXfermode());
+        brush.setStrikeThruText(old.isStrikeThruText());
+        brush.setTypeface(old.getTypeface());
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            brush.setElegantTextHeight(old.isElegantTextHeight());
+            brush.setFontFeatureSettings(old.getFontFeatureSettings());
+            brush.setLetterSpacing(old.getLetterSpacing());
+        }
+        if (Build.VERSION.SDK_INT >= 24) {
+            brush.setTextLocales(old.getTextLocales());
+        }
+
+        return brush;
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         this.stack.render(this, canvas);
     }
 
-    private boolean drawingShape = true;
-    public ShapeType shapeType = ShapeType.Rect;
+    private ShapeType shapeType = ShapeType.Rect;
+    public void setShapeType(ShapeType type) {
+        this.shapeType = type;
+    }
 
-    public int brushColor, brushSize;
-    public BrushShape brushShape;
+    @SuppressWarnings("FieldCanBeLocal")
+    private int brushColor, brushSize;
+    private BrushShape brushShape;
+    public void setBrushColor(int color) {
+        this.brushColor = color;
+        myBrush.setColor(this.brushColor);
+    }
+    public void setBrushSize(int size) {
+        this.brushSize = size;
+        myBrush.setStrokeWidth(this.brushSize);
+    }
 
 //    protected void onBrushStyleLineChange(Paint.Style newStyle) {
 //        myBrush.setStyle(newStyle);

@@ -25,20 +25,20 @@ public class MainActivity extends AppCompatActivity {
     private PaintView paintView;
 
     public void setColor(View view) {
-        paintView.brushColor = ((ColorDrawable)view.getBackground()).getColor();
+        paintView.setBrushColor(((ColorDrawable)view.getBackground()).getColor());
     }
 
     public void setShapeTriangle(View view) {
-        paintView.shapeType = ShapeType.Tri;
+        paintView.setShapeType(ShapeType.Tri);
     }
     public void setShapeRectangle(View view) {
-        paintView.shapeType = ShapeType.Rect;
+        paintView.setShapeType(ShapeType.Rect);
     }
     public void setShapeCircle(View view) {
-        paintView.shapeType = ShapeType.Oval;
+        paintView.setShapeType(ShapeType.Oval);
     }
     public void setShapeLine(View view) {
-        paintView.shapeType = ShapeType.Line;
+        paintView.setShapeType(ShapeType.Line);
     }
 
     public void undoPressed(View view) {
