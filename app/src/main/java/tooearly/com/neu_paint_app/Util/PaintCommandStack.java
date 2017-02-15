@@ -2,6 +2,9 @@ package tooearly.com.neu_paint_app.Util;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Matrix;
 
 import java.util.Stack;
@@ -17,18 +20,34 @@ public class PaintCommandStack {
                                 redoStack = new Stack<>();
     private float[] matrixValues = new float[9];
 
+    public static ColorFilter invertFilter;
+    public static ColorFilter normalFilter;
+    static {
+        invertFilter = new ColorMatrixColorFilter(new ColorMatrix(new float[] {
+            -1.0f, 0.0f,  0.0f,  1.0f, 0.0f,
+            0.0f,  -1.0f, 0.0f,  1.0f, 0.0f,
+            0.0f,  0.0f,  -1.0f, 1.0f, 0.0f,
+            1.0f,  1.0f,  1.0f,  1.0f, 0.0f
+        }));
+        normalFilter = null;
+    }
+
     public void render(PaintView view, Canvas canvas) {
         PaintFrame frame = new PaintFrame(view, canvas);
         Matrix previousMatrix = new Matrix();
+        boolean isInverted = false;
         for (int q = undoStack.size() - 1; q >= 0; q--) {
             PaintCommand cmd = undoStack.get(q);
             Matrix newMatrix = new Matrix();
             previousMatrix.getValues(matrixValues);
             newMatrix.setValues(matrixValues);
+            cmd.setColorFilter(isInverted ? invertFilter : normalFilter);
             previousMatrix = cmd.calculateMatrix(newMatrix, frame);
+            if (cmd instanceof InvertPaintCommand) isInverted = !isInverted;
         }
 
-        canvas.drawColor(Color.WHITE);
+        if (isInverted) canvas.drawColor(Color.BLACK);
+        else canvas.drawColor(Color.WHITE);
         for (int q = 0; q < undoStack.size(); q++) {
             PaintCommand cmd = undoStack.get(q);
             cmd.renderFull(frame);

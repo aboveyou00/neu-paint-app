@@ -2,18 +2,17 @@ package tooearly.com.neu_paint_app.Util;
 
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
+import android.graphics.Path;
 
-public class ClearPaintCommand extends PaintCommand {
-    public ClearPaintCommand(int color) {
-        this(new Paint());
-        this.brush.setColor(color);
-    }
-    public ClearPaintCommand(Paint brush) {
-        super("Clear Canvas");
+public class PathPaintCommand extends PaintCommand {
+    public PathPaintCommand(String name, Paint brush, Path path) {
+        super(name);
         this.brush = brush;
+        this.path = path;
     }
 
     public final Paint brush;
+    public final Path path;
 
     @Override
     public void setColorFilter(ColorFilter filter) {
@@ -22,6 +21,6 @@ public class ClearPaintCommand extends PaintCommand {
 
     @Override
     public void render(PaintFrame frame) {
-        frame.canvas.drawPaint(brush);
+        frame.canvas.drawPath(path, brush);
     }
 }

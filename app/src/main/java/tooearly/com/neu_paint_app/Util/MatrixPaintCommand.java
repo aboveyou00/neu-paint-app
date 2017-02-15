@@ -1,5 +1,6 @@
 package tooearly.com.neu_paint_app.Util;
 
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 
 public class MatrixPaintCommand extends PaintCommand {
@@ -42,7 +43,12 @@ public class MatrixPaintCommand extends PaintCommand {
     }
 
     @Override
-    public void render(PaintFrame frame) {
+    public void setColorFilter(ColorFilter filter) {
+        ;
+    }
 
+    @Override
+    public void render(PaintFrame frame) {
+        ;
     }
 }
