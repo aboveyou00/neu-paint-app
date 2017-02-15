@@ -6,7 +6,8 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tooearly.com.neu_paint_app.Activities.MainActivity">
+    tools:context="tooearly.com.neu_paint_app.Activities.MainActivity"
+    >
 
     <tooearly.com.neu_paint_app.Views.PaintView
         android:layout_width="match_parent"

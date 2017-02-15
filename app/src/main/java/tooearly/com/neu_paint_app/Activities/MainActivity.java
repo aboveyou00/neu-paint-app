@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         this.paintView = (PaintView)findViewById(R.id.paintView);
+
     }
 
     private PaintView paintView;

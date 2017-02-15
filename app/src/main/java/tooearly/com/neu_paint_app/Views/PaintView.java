@@ -74,15 +74,15 @@ public class PaintView extends View {
                 Log.d(TAG, "Action was DOWN");
                 Log.d(TAG, event.getX() + "");
                 Log.d(TAG, event.getY() + "");
-                curX = event.getX();
-                curY = event.getY();
+                curX = event.getRawX();
+                curY = event.getRawY();
                 stack.push(new LinePaintCommand("Brush", cloneBrush(myBrush), lineCoordsAry));
                 return true;
             case (MotionEvent.ACTION_MOVE):
                 Log.d(TAG, "Action was MOVE");
 
-                float newX = event.getX();
-                float newY = event.getY();
+                float newX = event.getRawX();
+                float newY = event.getRawY();
 
                 lineCoordsAry.add(new RectF(curX, curY, newX, newY));
                 curX = newX;
@@ -93,8 +93,8 @@ public class PaintView extends View {
             case (MotionEvent.ACTION_UP):
                 Log.d(TAG, "Action was UP");
 
-                float endX = event.getX();
-                float endY = event.getY();
+                float endX = event.getRawX();
+                float endY = event.getRawY();
 
                 lineCoordsAry.add(new RectF(curX, curY, endX, endY));
                 invalidate();
