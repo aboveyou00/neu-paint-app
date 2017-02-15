@@ -6,8 +6,7 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="tooearly.com.neu_paint_app.Activities.MainActivity"
-    >
+    tools:context="tooearly.com.neu_paint_app.Activities.MainActivity">
 
     <tooearly.com.neu_paint_app.Views.PaintView
         android:layout_width="match_parent"
@@ -32,6 +31,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:onClick="undoPressed"
         android:id="@+id/undoButton" />
 
     <Button
@@ -146,6 +146,7 @@
         android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/lineShapeButton"
         android:layout_toEndOf="@+id/lineShapeButton"
+        android:onClick="setShapeCircle"
         android:id="@+id/circleShapeButton" />
 
     <ImageButton
@@ -158,7 +159,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Undo"
+        android:text="@string/lbl_undo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView"
@@ -166,11 +167,10 @@
         android:layout_alignLeft="@+id/undoButton"
         android:layout_alignStart="@+id/undoButton"
         android:layout_marginLeft="11dp"
-        android:onClick="undoPressed"
         android:layout_marginStart="11dp" />
 
     <TextView
-        android:text="Horizontal"
+        android:text="@string/lbl_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView8"
@@ -178,7 +178,7 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Invert"
+        android:text="@string/lbl_invert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
@@ -258,7 +258,7 @@
         android:layout_toStartOf="@+id/textView8" />
 
     <TextView
-        android:text="Save"
+        android:text="@string/lbl_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
@@ -279,7 +279,7 @@
         android:layout_marginStart="11dp" />
 
     <TextView
-        android:text="Clear"
+        android:text="@string/lbl_clear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
@@ -302,11 +302,11 @@
         android:layout_marginStart="50dp" />
 
     <TextView
-        android:text="Vertical"
+        android:text="@string/lbl_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:layout_below="@+id/flipVerticalButton"
         android:layout_alignRight="@+id/flipVerticalButton"
         android:layout_alignEnd="@+id/flipVerticalButton" />
