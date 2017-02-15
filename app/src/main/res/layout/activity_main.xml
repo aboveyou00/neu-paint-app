@@ -319,7 +319,7 @@
         android:layout_toLeftOf="@+id/undoButton"
         android:layout_toStartOf="@+id/undoButton"
         android:onClick="redoPressed"
-        android:id="@+id/reduButton" />
+        android:id="@+id/redoButton" />
 
     <TextView
         android:text="Redu"
