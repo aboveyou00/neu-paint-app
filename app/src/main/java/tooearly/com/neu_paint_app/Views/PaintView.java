@@ -4,31 +4,24 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PointF;
 import android.graphics.RectF;
-import android.graphics.drawable.shapes.Shape;
 import android.os.Build;
 import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
 
-import tooearly.com.neu_paint_app.Util.BrushShape;
 import tooearly.com.neu_paint_app.Util.LinePaintCommand;
-import tooearly.com.neu_paint_app.Util.MatrixPaintCommand;
 import tooearly.com.neu_paint_app.Util.PaintCommandStack;
+import tooearly.com.neu_paint_app.Util.PathPaintCommand;
 import tooearly.com.neu_paint_app.Util.ShapePaintCommand;
 import tooearly.com.neu_paint_app.Util.ShapeType;
 
 public class PaintView extends View {
-
-    public static final String TAG = "PaintView";
-    private static float curX;
-    private static float curY;
-    private static Paint myBrush;
-    private static ArrayList<RectF> lineCoordsAry;
 
     public PaintView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -45,73 +38,82 @@ public class PaintView extends View {
         lineCoordsAry = new ArrayList<>();
 
         myBrush = new Paint();
-        myBrush.setColor(Color.BLACK);
-        myBrush.setStyle(Paint.Style.FILL);
+        myBrush.setColor(Color.BLUE);
+        myBrush.setStyle(Paint.Style.FILL_AND_STROKE);
+        myBrush.setStrokeCap(Paint.Cap.ROUND);
         myBrush.setStrokeWidth(3);
 
-        Paint filledBlue = new Paint();
-        filledBlue.setColor(Color.BLUE);
-        filledBlue.setStyle(Paint.Style.FILL);
-
-        Paint outlinedRed = new Paint();
-        outlinedRed.setColor(Color.RED);
-        outlinedRed.setStyle(Paint.Style.STROKE);
-
-        stack.push(new ShapePaintCommand("Draw Blue Rectangle", filledBlue, ShapeType.Oval, new RectF(100, 100, 200, 200)));
-        stack.push(new MatrixPaintCommand("Shift Vertically", 1, 1, 0, 100));
-        stack.push(new MatrixPaintCommand("Flip Vertically", 1, -1));
-        stack.push(new ShapePaintCommand("Draw Red Oval", outlinedRed, ShapeType.Line, new RectF(220, 120, 280, 180)));
+        setShapeType(shapeType);
+        setBrushColor(brushColor);
+        setBrushSize(brushSize);
     }
 
     public final PaintCommandStack stack;
 
+    private float startX, startY, curX, curY;
+    private boolean isDrawingShape = false;
+    private Paint myBrush;
+    private ArrayList<PointF> lineCoordsAry;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (shapeType == ShapeType.Brush) return onBrushTouchEvent(event);
+        else return onShapeTouchEvent(event);
+    }
+    private boolean onBrushTouchEvent(MotionEvent event) {
         int action = MotionEventCompat.getActionMasked(event);
 
         switch (action) {
             case (MotionEvent.ACTION_DOWN):
-                Log.d(TAG, "Action was DOWN");
-                Log.d(TAG, event.getX() + "");
-                Log.d(TAG, event.getY() + "");
                 curX = event.getRawX();
                 curY = event.getRawY();
                 stack.push(new LinePaintCommand("Brush", cloneBrush(myBrush), lineCoordsAry));
                 return true;
             case (MotionEvent.ACTION_MOVE):
-                Log.d(TAG, "Action was MOVE");
-
-                float newX = event.getRawX();
-                float newY = event.getRawY();
-
-                lineCoordsAry.add(new RectF(curX, curY, newX, newY));
-                curX = newX;
-                curY = newY;
+                curX = event.getRawX();
+                curY = event.getRawY();
+                lineCoordsAry.add(new PointF(curX, curY));
                 invalidate();
-
                 return true;
+
             case (MotionEvent.ACTION_UP):
-                Log.d(TAG, "Action was UP");
-
-                float endX = event.getRawX();
-                float endY = event.getRawY();
-
-                lineCoordsAry.add(new RectF(curX, curY, endX, endY));
+                curX = event.getRawX();
+                curY = event.getRawY();
+                lineCoordsAry.add(new PointF(curX, curY));
                 invalidate();
+
                 lineCoordsAry = new ArrayList<>();
+                return true;
 
-                curX = endX;
-                curY = endY;
-                //reset lineCoordsAry
+            default:
+                return super.onTouchEvent(event);
+        }
+    }
+    private boolean onShapeTouchEvent(MotionEvent event) {
+        int action = MotionEventCompat.getActionMasked(event);
 
+        switch (action) {
+            case (MotionEvent.ACTION_DOWN):
+                startX = curX = event.getRawX();
+                startY = curY = event.getRawY();
+                isDrawingShape = true;
+                return true;
+
+            case (MotionEvent.ACTION_MOVE):
+                curX = event.getRawX();
+                curY = event.getRawY();
                 invalidate();
                 return true;
-            case (MotionEvent.ACTION_CANCEL):
-                Log.d(TAG, "Action was CANCEL");
+
+            case (MotionEvent.ACTION_UP):
+                curX = event.getRawX();
+                curY = event.getRawY();
+                if (shapeType == ShapeType.Tri) stack.push(new PathPaintCommand("Triangle", cloneBrush(myBrush), getTriPath()));
+                else stack.push(new ShapePaintCommand(shapeType.name(), cloneBrush(myBrush), shapeType, getShapeRect()));
+                isDrawingShape = false;
+                invalidate();
                 return true;
-            case (MotionEvent.ACTION_OUTSIDE):
-                Log.d(TAG, "Movement occurred outside bounds of current screen element");
-                return true;
+
             default:
                 return super.onTouchEvent(event);
         }
@@ -165,68 +167,57 @@ public class PaintView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         this.stack.render(this, canvas);
+
+        if (isDrawingShape) {
+            switch (shapeType) {
+                case Rect:
+                    canvas.drawRect(getShapeRect(), myBrush);
+                    break;
+
+                case Oval:
+                    canvas.drawOval(getShapeRect(), myBrush);
+                    break;
+
+                case Line:
+                    canvas.drawLine(startX, startY, curX, curY, myBrush);
+                    break;
+
+                case Tri:
+                    Path path = getTriPath();
+                    canvas.drawPath(path, myBrush);
+            }
+        }
+    }
+    private RectF getShapeRect() {
+        if (shapeType == ShapeType.Line) return new RectF(startX, startY, curX, curY);
+        else return new RectF(Math.min(startX, curX), Math.min(startY, curY), Math.max(startX, curX), Math.max(startY, curY));
+    }
+    private Path getTriPath() {
+        Path path = new Path();
+        RectF rect = getShapeRect();
+        path.moveTo(rect.centerX(), rect.top);
+        path.lineTo(rect.left, rect.bottom);
+        path.lineTo(rect.right, rect.bottom);
+        path.close();
+        return path;
     }
 
-    private ShapeType shapeType = ShapeType.Rect;
+    private ShapeType shapeType = ShapeType.Brush;
     public void setShapeType(ShapeType type) {
         this.shapeType = type;
+        if (type == ShapeType.Brush || type == ShapeType.Line) myBrush.setStrokeWidth(this.brushSize);
+        else myBrush.setStrokeWidth(0);
     }
 
     @SuppressWarnings("FieldCanBeLocal")
-    private int brushColor, brushSize;
-    private BrushShape brushShape;
+    private int brushColor, brushSize = 15;
     public void setBrushColor(int color) {
         this.brushColor = color;
         myBrush.setColor(this.brushColor);
     }
     public void setBrushSize(int size) {
         this.brushSize = size;
-        myBrush.setStrokeWidth(this.brushSize);
+        setShapeType(ShapeType.Brush);
     }
-
-//    protected void onBrushStyleLineChange(Paint.Style newStyle) {
-//        myBrush.setStyle(newStyle);
-//    }
-//
-//    protected void onBrushStyleJoinChange(Paint.Join newJoinStyle) {
-//        myBrush.setStrokeJoin(newJoinStyle);
-//    }
-//
-//    protected void onBrushShapeChange(float newWidth) {
-//        myBrush.setStrokeWidth(newWidth);
-//    }
-//
-//    protected void onBrushSizeChange(float newWidth) {
-//        myBrush.setStrokeWidth(newWidth);
-//    }
-//
-//    protected void onBrushColorChange(int newColor) {
-//        myBrush.setColor(newColor);
-//    }
-//
-//    protected void flipCanvasHorizontally() {
-//        //TODO: flip canvas horizontally
-//    }
-//
-//    protected void flipCanvasVertically() {
-//        //TODO: flip canvas vertically
-//    }
-//
-//    protected void invertCanvas() {
-//        //TODO: invert canvas colors
-//    }
-//
-//    protected void undoAction() {
-//        //TODO: undo last draw action
-//    }
-//
-//    protected void saveCanvas() {
-//        //TODO: save current canvas
-//    }
-//
-//    protected void clearCanvas() {
-//        //TODO: clear current canvas
-//        this.clearCanvas();
-//    }
 
 }
