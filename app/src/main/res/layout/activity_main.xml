@@ -41,6 +41,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/redButton"
+        android:onClick="setColor"
         android:background="@color/Red" />
 
     <Button
@@ -50,6 +51,7 @@
         android:layout_alignLeft="@+id/blueButton"
         android:layout_alignStart="@+id/blueButton"
         android:id="@+id/greenButton"
+        android:onClick="setColor"
         android:background="@color/Green" />
 
     <Button
@@ -59,6 +61,7 @@
         android:layout_alignLeft="@+id/redButton"
         android:layout_alignStart="@+id/redButton"
         android:id="@+id/yellowButton"
+        android:onClick="setColor"
         android:background="@color/Yellow" />
 
     <Button
@@ -68,6 +71,7 @@
         android:layout_alignRight="@+id/greenButton"
         android:layout_alignEnd="@+id/greenButton"
         android:id="@+id/purpleButton"
+        android:onClick="setColor"
         android:background="@color/Purple" />
 
     <Button
@@ -77,6 +81,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:id="@+id/orangeButton"
+        android:onClick="setColor"
         android:background="@color/Orange" />
 
     <Button
@@ -86,6 +91,7 @@
         android:layout_alignLeft="@+id/purpleButton"
         android:layout_alignStart="@+id/purpleButton"
         android:id="@+id/pinkButton"
+        android:onClick="setColor"
         android:background="@color/Pink" />
 
     <Button
@@ -95,6 +101,7 @@
         android:layout_alignLeft="@+id/orangeButton"
         android:layout_alignStart="@+id/orangeButton"
         android:id="@+id/brownButton"
+        android:onClick="setColor"
         android:background="@color/Brown" />
 
     <Button
@@ -102,6 +109,7 @@
         android:layout_height="125dp"
         android:layout_marginTop="98dp"
         android:id="@+id/blueButton"
+        android:onClick="setColor"
         android:background="@color/Blue"
         android:layout_below="@+id/undoButton"
         android:layout_toLeftOf="@+id/redButton"
