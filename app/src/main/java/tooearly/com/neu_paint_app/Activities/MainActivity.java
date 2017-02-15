@@ -1,7 +1,12 @@
 package tooearly.com.neu_paint_app.Activities;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +20,10 @@ import tooearly.com.neu_paint_app.Util.MatrixPaintCommand;
 import tooearly.com.neu_paint_app.Util.ShapeType;
 import tooearly.com.neu_paint_app.Views.PaintView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
+
+    public static final float ACCELEROMETER_THRESHOLD = 4.0f;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,9 +58,27 @@ public class MainActivity extends AppCompatActivity {
 
         this.paintView = (PaintView)findViewById(R.id.paintView);
 
+        isInitialized = false;
+        sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+//        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    protected void onResume() {
+        super.onResume();
+        sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+    protected void onPause() {
+        super.onPause();
+        sensorManager.unregisterListener(this);
     }
 
     private PaintView paintView;
+
+    private boolean isInitialized;
+    private SensorManager sensorManager;
+    private Sensor accelerometer;
+    private float lastX, lastY, lastZ;
 
     public void setColor(View view) {
         paintView.setBrushColor(((ColorDrawable)view.getBackground()).getColor());
@@ -118,5 +144,26 @@ public class MainActivity extends AppCompatActivity {
     }
     public void saveCanvas() {
 
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        float x = event.values[0],
+              y = event.values[1],
+              z = event.values[2];
+        if (!isInitialized) {
+            isInitialized = true;
+            lastX = x;
+            lastY = y;
+            lastZ = z;
+        }
+        else {
+            float dist = (float)Math.sqrt(Math.pow(lastX - x, 2) + Math.pow(lastY - y, 2) + Math.pow(lastZ - z, 2));
+            if (dist > ACCELEROMETER_THRESHOLD) clearCanvas();
+        }
+    }
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        ;
     }
 }
