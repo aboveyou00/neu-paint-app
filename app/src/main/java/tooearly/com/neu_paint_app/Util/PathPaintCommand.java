@@ -1,5 +1,6 @@
 package tooearly.com.neu_paint_app.Util;
 
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
 
@@ -12,6 +13,11 @@ public class PathPaintCommand extends PaintCommand {
 
     public final Paint brush;
     public final Path path;
+
+    @Override
+    public void setColorFilter(ColorFilter filter) {
+        brush.setColorFilter(filter);
+    }
 
     @Override
     public void render(PaintFrame frame) {

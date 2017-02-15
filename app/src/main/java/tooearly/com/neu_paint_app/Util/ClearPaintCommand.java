@@ -1,5 +1,6 @@
 package tooearly.com.neu_paint_app.Util;
 
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 
 public class ClearPaintCommand extends PaintCommand {
@@ -13,6 +14,11 @@ public class ClearPaintCommand extends PaintCommand {
     }
 
     public final Paint brush;
+
+    @Override
+    public void setColorFilter(ColorFilter filter) {
+        brush.setColorFilter(filter);
+    }
 
     @Override
     public void render(PaintFrame frame) {

@@ -1,5 +1,6 @@
 package tooearly.com.neu_paint_app.Util;
 
+import android.graphics.ColorFilter;
 import android.graphics.Matrix;
 
 public abstract class PaintCommand {
@@ -13,6 +14,7 @@ public abstract class PaintCommand {
     public Matrix calculateMatrix(Matrix matrix, PaintFrame frame) {
         return this.matrix = matrix;
     }
+    public abstract void setColorFilter(ColorFilter filter);
 
     public final void renderFull(PaintFrame frame) {
         frame.canvas.setMatrix(this.matrix);

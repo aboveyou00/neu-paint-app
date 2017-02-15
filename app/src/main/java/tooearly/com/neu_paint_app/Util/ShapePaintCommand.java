@@ -1,33 +1,39 @@
 package tooearly.com.neu_paint_app.Util;
 
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
 public class ShapePaintCommand extends PaintCommand {
-    public ShapePaintCommand(String name, Paint paint, ShapeType type, RectF dimens) {
+    public ShapePaintCommand(String name, Paint brush, ShapeType type, RectF dimens) {
         super(name);
-        this.paint = paint;
+        this.brush = brush;
         this.type = type;
         this.dimens = dimens;
     }
 
-    public final Paint paint;
+    public final Paint brush;
     public final ShapeType type;
     public final RectF dimens;
+
+    @Override
+    public void setColorFilter(ColorFilter filter) {
+        brush.setColorFilter(filter);
+    }
 
     @Override
     public void render(PaintFrame frame) {
         switch (type) {
         case Rect:
-            frame.canvas.drawRect(dimens, paint);
+            frame.canvas.drawRect(dimens, brush);
             break;
 
         case Oval:
-            frame.canvas.drawOval(dimens, paint);
+            frame.canvas.drawOval(dimens, brush);
             break;
 
         case Line:
-            frame.canvas.drawLine(dimens.left, dimens.top, dimens.right, dimens.bottom, paint);
+            frame.canvas.drawLine(dimens.left, dimens.top, dimens.right, dimens.bottom, brush);
             break;
 
         default:

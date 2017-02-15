@@ -186,7 +186,6 @@
         android:layout_marginStart="10dp"
         android:layout_below="@+id/invertColorButton"
         android:layout_alignLeft="@+id/invertColorButton"
-        android:onClick="invertPressed"
         android:layout_alignStart="@+id/invertColorButton" />
 
     <ImageButton
@@ -250,6 +249,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_popup_sync"
+        android:onClick="invertPressed"
         android:id="@+id/invertColorButton"
         android:layout_marginRight="22dp"
         android:layout_marginEnd="22dp"
