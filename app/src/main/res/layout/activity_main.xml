@@ -311,4 +311,23 @@
         android:layout_alignRight="@+id/flipVerticalButton"
         android:layout_alignEnd="@+id/flipVerticalButton" />
 
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_media_ff"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/undoButton"
+        android:layout_toStartOf="@+id/undoButton"
+        android:onClick="redoPressed"
+        android:id="@+id/reduButton" />
+
+    <TextView
+        android:text="Redu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/reduButton"
+        android:layout_alignRight="@+id/rectangleShapeButton"
+        android:layout_alignEnd="@+id/rectangleShapeButton" />
+
 </RelativeLayout>
