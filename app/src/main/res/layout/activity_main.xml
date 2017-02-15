@@ -22,239 +22,285 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/imageButton17" />
+        android:onClick="saveCanvasPressed"
+        android:id="@+id/saveButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        app:srcCompat="@android:drawable/ic_menu_revert"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageButton17"
-        android:layout_toEndOf="@+id/imageButton17"
-        android:id="@+id/imageButton18"
-        android:onClick="clearCanvasPressed" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="125dp"
-        android:layout_alignBottom="@+id/button5"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/button6"
-        android:background="@color/Red"
-        android:onClick="setColor" />
+        android:id="@+id/undoButton" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="125dp"
-        android:layout_below="@+id/button5"
-        android:layout_alignLeft="@+id/button5"
-        android:layout_alignStart="@+id/button5"
-        android:id="@+id/button7"
-        android:background="@color/Green"
-        android:onClick="setColor" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="125dp"
-        android:layout_below="@+id/button6"
-        android:layout_alignLeft="@+id/button6"
-        android:layout_alignStart="@+id/button6"
-        android:id="@+id/button8"
-        android:background="@color/Yellow"
-        android:onClick="setColor" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="125dp"
-        android:layout_below="@+id/button7"
-        android:layout_alignRight="@+id/button7"
-        android:layout_alignEnd="@+id/button7"
-        android:id="@+id/button9"
-        android:background="@color/Purple"
-        android:onClick="setColor" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="125dp"
-        android:layout_below="@+id/button8"
+        android:layout_alignBottom="@+id/blueButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/button10"
-        android:background="@color/Orange"
-        android:onClick="setColor" />
+        android:id="@+id/redButton"
+        android:background="@color/Red" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="125dp"
-        android:layout_below="@+id/button9"
-        android:layout_alignLeft="@+id/button9"
-        android:layout_alignStart="@+id/button9"
-        android:id="@+id/button11"
-        android:background="@color/Pink"
-        android:onClick="setColor" />
+        android:layout_below="@+id/blueButton"
+        android:layout_alignLeft="@+id/blueButton"
+        android:layout_alignStart="@+id/blueButton"
+        android:id="@+id/greenButton"
+        android:background="@color/Green" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
         android:layout_height="125dp"
-        android:layout_below="@+id/button10"
-        android:layout_alignLeft="@+id/button10"
-        android:layout_alignStart="@+id/button10"
-        android:id="@+id/button12"
-        android:background="@color/Brown"
-        android:onClick="setColor" />
+        android:layout_below="@+id/redButton"
+        android:layout_alignLeft="@+id/redButton"
+        android:layout_alignStart="@+id/redButton"
+        android:id="@+id/yellowButton"
+        android:background="@color/Yellow" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:layout_below="@+id/greenButton"
+        android:layout_alignRight="@+id/greenButton"
+        android:layout_alignEnd="@+id/greenButton"
+        android:id="@+id/purpleButton"
+        android:background="@color/Purple" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:layout_below="@+id/yellowButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/orangeButton"
+        android:background="@color/Orange" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:layout_below="@+id/purpleButton"
+        android:layout_alignLeft="@+id/purpleButton"
+        android:layout_alignStart="@+id/purpleButton"
+        android:id="@+id/pinkButton"
+        android:background="@color/Pink" />
+
+    <Button
+        android:layout_width="50dp"
+        android:layout_height="125dp"
+        android:layout_below="@+id/orangeButton"
+        android:layout_alignLeft="@+id/orangeButton"
+        android:layout_alignStart="@+id/orangeButton"
+        android:id="@+id/brownButton"
+        android:background="@color/Brown" />
+
+    <Button
+        android:layout_width="50dp"
         android:layout_height="125dp"
         android:layout_marginTop="98dp"
-        android:id="@+id/button5"
+        android:id="@+id/blueButton"
         android:background="@color/Blue"
-        android:layout_below="@+id/imageButton19"
-        android:layout_toLeftOf="@+id/button6"
-        android:layout_toStartOf="@+id/button6"
-        android:onClick="setColor" />
+        android:layout_below="@+id/undoButton"
+        android:layout_toLeftOf="@+id/redButton"
+        android:layout_toStartOf="@+id/redButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/triangle"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/imageButton17"
-        android:layout_toEndOf="@+id/imageButton17"
+        android:layout_toRightOf="@+id/saveButton"
+        android:layout_toEndOf="@+id/saveButton"
         android:layout_marginLeft="39dp"
         android:layout_marginStart="39dp"
-        android:id="@+id/imageButton20"
-        android:onClick="setShapeTriangle" />
+        android:onClick="setShapeTriangle"
+        android:id="@+id/triangleShapeButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/line"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/imageButton20"
+        android:layout_toRightOf="@+id/triangleShapeButton"
         android:layout_marginBottom="30dp"
-        android:layout_toEndOf="@+id/imageButton20"
-        android:id="@+id/imageButton21"
-        android:onClick="setShapeLine" />
+        android:layout_toEndOf="@+id/triangleShapeButton"
+        android:onClick="setShapeLine"
+
+        android:id="@+id/lineShapeButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/circle"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/imageButton21"
-        android:layout_toEndOf="@+id/imageButton21"
-        android:id="@+id/imageButton22"
-        android:onClick="setShapeCircle" />
+        android:layout_toRightOf="@+id/lineShapeButton"
+        android:layout_toEndOf="@+id/lineShapeButton"
+        android:id="@+id/circleShapeButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@android:drawable/ic_popup_sync"
+        android:id="@+id/flipHorizontalButton"
         android:layout_alignParentTop="true"
-        android:id="@+id/imageButton25"
-        android:onClick="saveCanvasPressed" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_popup_sync"
-        android:id="@+id/imageButton28"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textView8"
-        android:layout_toEndOf="@+id/textView8"
-        android:layout_marginLeft="58dp"
-        android:layout_marginStart="58dp"
-        android:onClick="flipVerticalPressed" />
-
-    <TextView
-        android:text="@string/lbl_vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/imageButton28"
-        android:layout_alignLeft="@+id/imageButton28"
-        android:layout_alignStart="@+id/imageButton28"
-        android:id="@+id/textView9" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_popup_sync"
-        android:id="@+id/imageButton27"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="flipHorizontalPressed" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_popup_sync"
-        android:id="@+id/imageButton26"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/imageButton18"
-        android:layout_toEndOf="@+id/imageButton18"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp" />
-
-    <TextView
-        android:text="@string/lbl_undo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/imageButton19"
-        android:layout_alignLeft="@+id/imageButton19"
-        android:layout_alignStart="@+id/imageButton19"
-        android:layout_marginLeft="11dp"
-        android:layout_marginStart="11dp" />
-
-    <TextView
-        android:text="@string/lbl_horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView8"
-        android:layout_below="@+id/imageButton27"
+        android:onClick="flipHorizontalPressed"
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="@string/lbl_invert"
+        android:text="Undo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/undoButton"
+        android:layout_alignLeft="@+id/undoButton"
+        android:layout_alignStart="@+id/undoButton"
+        android:layout_marginLeft="11dp"
+        android:onClick="undoPressed"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:text="Horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:layout_below="@+id/flipHorizontalButton"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Invert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
-        android:layout_below="@+id/imageButton26"
-        android:layout_alignLeft="@+id/imageButton26"
-        android:layout_alignStart="@+id/imageButton26"
-        android:onClick="invertPressed" />
+        android:layout_below="@+id/invertColorButton"
+        android:layout_alignLeft="@+id/invertColorButton"
+        android:onClick="invertPressed"
+        android:layout_alignStart="@+id/invertColorButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        android:id="@+id/btnRedo"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="redoPressed" />
+        android:src="@drawable/square"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/circleShapeButton"
+        android:layout_toEndOf="@+id/circleShapeButton"
+        android:onClick="setShapeRectangle"
+        android:id="@+id/rectangleShapeButton" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_revert"
-        android:id="@+id/imageButton19"
-        android:onClick="undoPressed"
+        app:srcCompat="@drawable/brush1"
+        android:layout_above="@+id/circleShapeButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="44dp"
+        android:onClick="setShapeCircle"
+        android:id="@+id/brush1ShapeButton" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/brush2"
+        android:layout_above="@+id/brush1ShapeButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/brush2ShapeButton" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/brush3"
+        android:layout_above="@+id/brush2ShapeButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/brush3ShapeButton" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/brush4"
+        android:layout_above="@+id/brush3ShapeButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/brush4ShapeButton" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/brush5"
+        android:layout_above="@+id/brush4ShapeButton"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/brush5ShapeButton" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_popup_sync"
+        android:id="@+id/invertColorButton"
+        android:layout_marginRight="22dp"
+        android:layout_marginEnd="22dp"
         android:layout_alignParentTop="true"
-        android:layout_toLeftOf="@+id/btnRedo"
-        android:layout_toStartOf="@+id/btnRedo" />
+        android:layout_toLeftOf="@+id/textView8"
+        android:layout_toStartOf="@+id/textView8" />
 
     <TextView
-        android:text="@string/lbl_redo"
+        android:text="Save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lbl_redo"
-        android:layout_below="@+id/btnRedo"
-        android:layout_marginLeft="555dp"
-        android:layout_marginStart="555dp" />
+        android:id="@+id/textView2"
+        android:layout_below="@+id/saveButton"
+        android:layout_alignRight="@+id/brush4ShapeButton"
+        android:layout_alignEnd="@+id/brush4ShapeButton" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_menu_close_clear_cancel"
+        android:id="@+id/clearButton"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/brush1ShapeButton"
+        android:layout_toEndOf="@+id/brush1ShapeButton"
+        android:layout_marginLeft="11dp"
+        android:onClick="clearCanvasPressed"
+        android:layout_marginStart="11dp" />
+
+    <TextView
+        android:text="Clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/clearButton"
+        android:layout_alignLeft="@+id/clearButton"
+        android:layout_alignStart="@+id/clearButton"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_popup_sync"
+        android:id="@+id/flipVerticalButton"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView8"
+        android:layout_toEndOf="@+id/textView8"
+        android:layout_marginLeft="50dp"
+        android:onClick="flipVerticalPressed"
+        android:layout_marginStart="50dp" />
+
+    <TextView
+        android:text="Vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textSize="16dp"
+        android:layout_below="@+id/flipVerticalButton"
+        android:layout_alignRight="@+id/flipVerticalButton"
+        android:layout_alignEnd="@+id/flipVerticalButton" />
 
 </RelativeLayout>

@@ -5,6 +5,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import tooearly.com.neu_paint_app.R;
 import tooearly.com.neu_paint_app.Util.ClearPaintCommand;
@@ -18,6 +20,33 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ImageButton saveButton = (ImageButton)findViewById(R.id.saveButton);
+        ImageButton clearButton = (ImageButton)findViewById(R.id.clearButton);
+        ImageButton invertColorButton = (ImageButton)findViewById(R.id.invertColorButton);
+        ImageButton flipHorizontalButton = (ImageButton)findViewById(R.id.flipHorizontalButton);
+        ImageButton flipVerticalButton = (ImageButton)findViewById(R.id.flipVerticalButton);
+        ImageButton undoButton = (ImageButton)findViewById(R.id.undoButton);
+
+        Button blueButton = (Button)findViewById(R.id.blueButton); //#FF0026F9
+        Button redButton = (Button)findViewById(R.id.redButton); //#FFFF000D
+        Button greenButton = (Button)findViewById(R.id.greenButton); //#FF2DF800
+        Button yellowButton = (Button)findViewById(R.id.yellowButton); //#FFF7FF00
+        Button purpleButton = (Button)findViewById(R.id.purpleButton); //#FFB700FF
+        Button orangeButton = (Button)findViewById(R.id.orangeButton); //#FFFF8C00
+        Button pinkButton = (Button)findViewById(R.id.pinkButton); //#FFFF007B
+        Button brownButton = (Button)findViewById(R.id.brownButton); //#FF964B1F
+
+        ImageButton brush1ShapeButton = (ImageButton)findViewById(R.id.brush1ShapeButton);
+        ImageButton brush2ShapeButton = (ImageButton)findViewById(R.id.brush2ShapeButton);
+        ImageButton brush3ShapeButton = (ImageButton)findViewById(R.id.brush3ShapeButton);
+        ImageButton brush4ShapeButton = (ImageButton)findViewById(R.id.brush4ShapeButton);
+        ImageButton brush5ShapeButton = (ImageButton)findViewById(R.id.brush5ShapeButton);
+
+        ImageButton triangleShapeButton = (ImageButton)findViewById(R.id.triangleShapeButton);
+        ImageButton lineShapeButton = (ImageButton)findViewById(R.id.lineShapeButton);
+        ImageButton circleShapeButton = (ImageButton)findViewById(R.id.circleShapeButton);
+        ImageButton squareShapeButton = (ImageButton)findViewById(R.id.rectangleShapeButton);
 
         this.paintView = (PaintView)findViewById(R.id.paintView);
 
