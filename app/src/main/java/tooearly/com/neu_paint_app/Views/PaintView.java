@@ -43,6 +43,8 @@ public class PaintView extends View {
         myBrush.setStrokeCap(Paint.Cap.ROUND);
         myBrush.setStrokeWidth(3);
 
+        setDrawingCacheEnabled(true);
+
         setShapeType(shapeType);
         setBrushColor(brushColor);
         setBrushSize(brushSize);

@@ -1,17 +1,23 @@
 package tooearly.com.neu_paint_app.Activities;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 
 import tooearly.com.neu_paint_app.R;
 import tooearly.com.neu_paint_app.Util.ClearPaintCommand;
@@ -23,6 +29,10 @@ import tooearly.com.neu_paint_app.Views.PaintView;
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
     public static final float ACCELEROMETER_THRESHOLD = 28.0f;
+    private static int saveNum = 1;
+    private File root = android.os.Environment.getExternalStorageDirectory();
+    private File dir = new File (root.getAbsolutePath() + "/Download");
+    private File file;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +89,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private Sensor accelerometer;
     private float lastX, lastY, lastZ;
+
+    public void setBrushSize(View view) {
+        paintView.setBrushSize(Integer.parseInt(view.getTag().toString()));
+    }
 
     public void setColor(View view) {
         paintView.setBrushColor(((ColorDrawable)view.getBackground()).getColor());
@@ -143,8 +157,31 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         saveCanvas();
     }
     public void saveCanvas() {
+        file = new File(dir, "myPicture"+saveNum+".png");
+        saveNum++;
+        System.out.println("save file: " + file);
+        dir.mkdirs();
 
+
+        if(isExternalStorageAvailable()) {
+            try {
+                file.createNewFile();
+                FileOutputStream fos = new FileOutputStream(file);
+                paintView.getDrawingCache().compress(Bitmap.CompressFormat.PNG, 100, fos);
+                fos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            System.out.println("External Storage is not available.");
+        }
     }
+
+    public boolean isExternalStorageAvailable() {
+        String state = Environment.getExternalStorageState();
+        return Environment.MEDIA_MOUNTED.equals(state);
+    }
+
 
     @Override
     public void onSensorChanged(SensorEvent event) {

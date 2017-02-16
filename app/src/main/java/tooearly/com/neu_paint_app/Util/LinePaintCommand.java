@@ -23,7 +23,7 @@ public class LinePaintCommand extends PaintCommand {
 
     @Override
     public void render(PaintFrame frame) {
-        for (int i = 0; i < pointsAry.size() - 1; i++) {
+        for (int i = 0; i < pointsAry.size() - 2; i++) {
             PointF from = pointsAry.get(i),
                    to = pointsAry.get(i + 1);
             frame.canvas.drawLine(from.x, from.y, to.x, to.y, brush);
